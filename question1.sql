@@ -17,13 +17,9 @@ VALUES('X','Female','Finance'),
 SELECT * FROM employees;
 
 SELECT department AS Department,
-       SUM(CASE
-               WHEN gender='Male' THEN 1
-               ELSE 0
-           END) AS 'Count of Male',
-       SUM(CASE
-               WHEN gender='Female' THEN 1
-               ELSE 0
-           END) AS 'Count of Female'  
-FROM employees
-GROUP BY department;
+       count(case gender when 'male' then 1 end) as 'Num of male',
+       count(case gender when 'female' then 1 end) as 'Num of female'
+       from employees
+group by department
+order by department;
+
